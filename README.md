@@ -48,3 +48,4 @@ Contributing
 
 License
 - See `pyproject.toml` for packaging metadata.
+
