@@ -1,0 +1,7 @@
+# pylintrc: disable docstring warnings for modules, classes, functions/methods
+[MESSAGES CONTROL]
+# missing-module-docstring: C0114
+# missing-class-docstring:  C0115
+# missing-function-docstring: C0116 (covers functions and methods)
+# similar lines in multiple files: R0801
+disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,R0801
