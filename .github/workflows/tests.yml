@@ -1,0 +1,31 @@
+name: Tests
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.14"]
+
+    steps:
+    - uses: [actions/checkout](https://github.com)@v4
+    
+    - name: Install uv and set the Python version
+      uses: [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv)@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+        # Optional: cache the uv installation and dependencies
+        cache-key: ${{ runner.os }}-uv-${{ matrix.python-version }}-${{ hashFiles('**/uv.lock') }}
+    
+    - name: Install project dependencies
+      # uv sync installs dependencies defined in pyproject.toml or requirements.txt
+      run: uv sync --locked --all-extras --dev
+
+    - name: Run tests with pytest
+      # Use `uv run` to execute pytest within the managed environment
+      run: uv run pytest
