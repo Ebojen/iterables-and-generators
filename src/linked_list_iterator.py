@@ -1,5 +1,5 @@
 from typing import TypeVar, Generic, Optional
-from node import Node
+from .node import Node
 
 
 T = TypeVar("T")
