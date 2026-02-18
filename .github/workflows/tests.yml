@@ -13,14 +13,12 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.14"]
 
     steps:
-    - uses: [actions/checkout](https://github.com)@v4
+    - uses: actions/checkout@6
     
     - name: Install uv and set the Python version
-      uses: [astral-sh/setup-uv](https://github.com/astral-sh/setup-uv)@v6
+      uses: astral-sh/setup-uv@v7
       with:
         python-version: ${{ matrix.python-version }}
-        # Optional: cache the uv installation and dependencies
-        cache-key: ${{ runner.os }}-uv-${{ matrix.python-version }}-${{ hashFiles('**/uv.lock') }}
     
     - name: Install project dependencies
       # uv sync installs dependencies defined in pyproject.toml or requirements.txt
